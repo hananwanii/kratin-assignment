@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reminder System</title>
+</head>
+<body>
+  <h1>Customized Reminders</h1>
+  <form id="reminderForm">
+    <label for="recipient">Recipient's Phone Number:</label>
+    <input type="text" id="recipient" name="recipient" required><br>
+    <label for="message">Reminder Message:</label>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+    <button type="submit">Send Reminder</button>
+  </form>
+  <p id="response"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>

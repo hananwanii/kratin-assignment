@@ -7,16 +7,17 @@ const port = 3000;
 
 // Twilio configuration
 const accountSid = 'AC39d2b8c5965a3ef542a8574869c08a35';
-const authToken = '29902490ccdbff7da4cd07e984119786';
+const authToken = 'f2ea7b620d05831d03f4bbdab1dcd80c';
+const twilioPhoneNumber = '++18146489445';
+
 const client = new twilio(accountSid, authToken);
 
-// Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(bodyParser.json());
 
-// Routes
 app.get('/', (req, res) => {
-  res.send('Customized Reminders System');
-});
+    res.sendFile(__dirname + '/public/index.html');
+  });
 
 app.post('/send-reminder', (req, res) => {
   const { recipient, message } = req.body;
@@ -24,12 +25,12 @@ app.post('/send-reminder', (req, res) => {
   client.messages
     .create({
       body: message,
-      from: '+18146489445',
+      from: twilioPhoneNumber,
       to: recipient,
     })
     .then(message => {
       console.log(`Reminder sent: ${message.sid}`);
-      res.send('Reminder sent successfully');
+      res.sendStatus(200);
     })
     .catch(error => {
       console.error(`Error sending reminder: ${error}`);
